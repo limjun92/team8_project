@@ -1,0 +1,12 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'left_side.css' %}" type="text/css">
+
+<form>
+    {% csrf_token %}
+    <input type="checkbox" name="gender" value="Woman">Woman</input><br>
+    <input type="checkbox" name="gender" value="Woman">Man</input><br>
+    <br>
+    <input type="checkbox" name="gender" value="top">top</input><br>
+    <input type="checkbox" name="gender" value="bottoms">bottoms</input><br>
+    <input type="checkbox" name="gender" value="etc">etc</input><br>
+</form>

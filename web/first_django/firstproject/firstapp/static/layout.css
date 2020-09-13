@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding:0;
+}
+
+body{
+    background-color: cornflowerblue;
+    display: flex;
+    flex-direction: column ;
+    justify-content: space-between;
+}
+
+.header{
+    /* position: fixed; */
+    height: 200px;
+    background-color: pink;
+    margin-top: 0;
+}
+
+.wrap{
+    justify-content: space-between;
+    background-color: darkgray;
+    display: flex;
+}
+
+.left-wrap{
+    background-color: darkcyan;
+    width: 300px;
+    height: 200px;
+}
+
+.right-wrap{
+    width: max-content;
+    background-color: darkgoldenrod;
+}
+
+.footer{
+    background-color: coral;
+    height: 200px;
+}

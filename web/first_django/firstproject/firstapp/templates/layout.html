@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'layout.css' %}"/>
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="header">
+        {% block header %} {% include 'header.html' %} {% endblock header %}
+    </div>
+    
+    <div class="wrap">
+        <div class="left-wrap">
+            {% block left_side %} {% include 'left_side.html' %} {% endblock left_side %}
+        </div>
+
+{% comment %} 
+***************************************************************
+content block의 내용이 index.html에서 load된다. main_content 통해 주요내용을 바꿔준다
+>> layout의 html은 헤더, 메뉴바, 푸터등의 기본적인 사항만 설정
+***************************************************************
+ {% endcomment %}
+        <div class="right-wrap">
+            {% block content %}
+
+            {% endblock content %}
+        </div>
+    </div>  
+    
+    <div class="footer">
+        {% block footer %} {% include 'footer.html' %} {% endblock footer %}
+    </div>
+
+    {% block extra_body %}
+    {% endblock %}
+
+</body>
+</html>
