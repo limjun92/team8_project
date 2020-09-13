@@ -12,3 +12,14 @@ def index(request):
     }
 
     return render(request,'index.html',context)
+
+
+def check(request):
+
+    answer=request.POST.getlist('check')
+
+    context={
+        'answer':answer
+    }
+
+    return render(request,'main_content.html',context)
