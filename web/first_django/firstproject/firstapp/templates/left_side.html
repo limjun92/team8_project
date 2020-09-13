@@ -1,12 +1,23 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'left_side.css' %}" type="text/css">
 
-<form>
+<form action="{% url 'check' %}" method="POST">
     {% csrf_token %}
-    <input type="checkbox" name="gender" value="Woman">Woman</input><br>
-    <input type="checkbox" name="gender" value="Woman">Man</input><br>
+    <input type="checkbox" name="check" value="Woman">
+        <label>Woman</label>
+    </input><br>
+    <input type="checkbox" name="check" value="Man">
+        <label>Man</label>
+    </input><br>
     <br>
-    <input type="checkbox" name="gender" value="top">top</input><br>
-    <input type="checkbox" name="gender" value="bottoms">bottoms</input><br>
-    <input type="checkbox" name="gender" value="etc">etc</input><br>
+    <input type="checkbox" name="check" value="top">
+        <label>top</label>
+    </input><br>
+    <input type="checkbox" name="check" value="bottoms">
+        <label>bottoms</label>
+    </input><br>
+    <input type="checkbox" name="check" value="etc">
+        <label>etc</label>
+    </input><br>
+    <button type='submit'>SEARCH</button>
 </form>
