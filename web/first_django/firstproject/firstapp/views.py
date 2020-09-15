@@ -14,7 +14,9 @@ def get_db():
 
 
 def index(request):        
+    
     products=Product.objects.all()
+    
     context={
         'products':products
     }
@@ -35,3 +37,6 @@ def check(request):
 
 
     return render(request,'index.html',context)
+
+def sub(request):
+    return render(request,'sub.html')
