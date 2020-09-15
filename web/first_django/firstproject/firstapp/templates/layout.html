@@ -8,11 +8,11 @@
     <title>Document</title>
 </head>
 <body>
-    
+
     <div class="header">
         {% block header %} {% include 'header.html' %} {% endblock header %}
     </div>
-    
+
     <div class="wrap">
         <div class="left-wrap">
             {% block left_side %} {% include 'left_side.html' %} {% endblock left_side %}
@@ -30,7 +30,7 @@ content block의 내용이 index.html에서 load된다. main_content 통해 주�
             {% endblock content %}
         </div>
     </div>  
-    
+
     <div class="footer">
         {% block footer %} {% include 'footer.html' %} {% endblock footer %}
     </div>

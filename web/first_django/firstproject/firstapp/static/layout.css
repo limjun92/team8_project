@@ -14,7 +14,6 @@ body{
     /* position: fixed; */
     height: 200px;
     background-color: pink;
-    margin-top: 0;
 }
 
 .wrap{
@@ -30,11 +29,22 @@ body{
 }
 
 .right-wrap{
-    width: max-content;
     background-color: darkgoldenrod;
 }
 
 .footer{
     background-color: coral;
     height: 200px;
+}
+
+.content_wrap{
+    display: flex;
+    margin:30px;
+}
+
+.box{
+    width: 150px;
+    height: 150px;
+    background-color: darkgreen;
+    margin: 10px;
 }
