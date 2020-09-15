@@ -7,36 +7,15 @@ body{
     background-color: cornflowerblue;
     display: flex;
     flex-direction: column ;
-    justify-content: space-between;
 }
 
 .header{
-    /* position: fixed; */
+    display: flex;
     height: 200px;
     background-color: pink;
 }
 
-.wrap{
-    justify-content: space-between;
-    background-color: darkgray;
-    display: flex;
-}
-
-.left-wrap{
-    background-color: darkcyan;
-    width: 300px;
-}
-
-.right-wrap{
-    background-color: darkgoldenrod;
-}
-
-.footer{
-    background-color: coral;
-    height: 200px;
-}
-
-.content_wrap{
+.content{
     display: flex;
     margin:30px;
 }
@@ -46,4 +25,9 @@ body{
     height: 150px;
     background-color: darkgreen;
     margin: 10px;
+}
+
+.footer{
+    background-color: coral;
+    height: 200px;
 }
