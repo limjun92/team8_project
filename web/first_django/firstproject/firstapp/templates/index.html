@@ -6,6 +6,20 @@
 
 {% block content %}
 
-            {% block right_side %} {% include 'main_content.html' %} {% endblock right_side %}
+            {% block right_side %}
+                <div class="content_wrap">
+                    
+                    {% for product in products %}
+                        <div class='box'>
+                            {{product.name}}
+                        </div>
+                    {% endfor %}
+
+                    {% for answer in answers %}
+                        {{answer}}
+                    {% endfor %}
+
+                </div>                            
+            {% endblock right_side %}
 
 {% endblock content %}

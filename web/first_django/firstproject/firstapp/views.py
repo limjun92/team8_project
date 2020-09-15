@@ -4,9 +4,17 @@ from .models import Product,Comment,Favorite,User
 
 # Create your views here.
 
-def index(request):    
+def get_db():
     products=Product.objects.all()
+    context={
+        'products':products
+    }
+    return context
 
+
+
+def index(request):        
+    products=Product.objects.all()
     context={
         'products':products
     }
@@ -15,11 +23,15 @@ def index(request):
 
 
 def check(request):
-
+    print('function check')
     answer=request.POST.getlist('check')
-
+    print(answer)
     context={
-        'answer':answer
+        'answers':answer
     }
+    answer=get_db
+    for i in products:
+        print(i)   
 
-    return render(request,'main_content.html',context)
+
+    return render(request,'index.html',context)
