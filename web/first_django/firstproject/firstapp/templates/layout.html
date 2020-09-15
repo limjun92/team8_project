@@ -14,20 +14,46 @@
     </div>
 
     <div class="wrap">
+
+    {% comment %} 메뉴바 {% endcomment %}
         <div class="left-wrap">
-            {% block left_side %} {% include 'left_side.html' %} {% endblock left_side %}
+            <form action="{% url 'check' %}" method="POST">
+                {% csrf_token %}
+                <input type="checkbox" name="check" value="Woman">
+                    <label>Woman</label>
+                </input><br>
+                <input type="checkbox" name="check" value="Man">
+                    <label>Man</label>
+                </input><br>
+                <br>
+                <input type="checkbox" name="check" value="top">
+                    <label>top</label>
+                </input><br>
+                <input type="checkbox" name="check" value="bottoms">
+                    <label>bottoms</label>
+                </input><br>
+                <input type="checkbox" name="check" value="etc">
+                    <label>etc</label>
+                </input><br>
+                <button type='submit'>SEARCH</button>
+            </form>
         </div>
 
-{% comment %} 
-***************************************************************
-content block의 내용이 index.html에서 load된다. main_content 통해 주요내용을 바꿔준다
->> layout의 html은 헤더, 메뉴바, 푸터등의 기본적인 사항만 설정
-***************************************************************
- {% endcomment %}
+    {% comment %} 메인콘텐츠 {% endcomment %}
         <div class="right-wrap">
-            {% block content %}
+                <div class="content_wrap">
+                        
+                        {% for product in products %}
+                            <div class='box'>
+                                {{product.name}}
+                            </div>
+                        {% endfor %}
 
-            {% endblock content %}
+                        {% for answer in answers %}
+                            {{answer}}
+                        {% endfor %}
+
+                </div>
         </div>
     </div>  
 
