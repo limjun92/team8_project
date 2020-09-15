@@ -4,15 +4,9 @@ from .models import Product,Comment,Favorite,User
 
 # Create your views here.
 
-def get_db():
-    products=Product.objects.all()
-    context={
-        'products':products
-    }
-    return context
 
-
-
+# 랜덤된 이미지를 보여준다
+# 메인페이지
 def index(request):        
     
     products=Product.objects.all()
@@ -24,21 +18,15 @@ def index(request):
     return render(request,'index.html',context)
 
 
-def check(request):
-    print('function check')
-    answer=request.POST.getlist('check')
-    products=Product.objects.all()
-    print(answer)
-    context={
-        'products':products,
-        'answers':answer
-    }
-    answer=get_db
-    for i in products:
-        print(i)   
 
-
-    return render(request,'index.html',context)
-
+# 관련된 이미지를 보여준다
+# 서브페이지
 def sub(request):
-    return render(request,'sub.html')
+
+    products=Product.objects.all()
+    
+    context={
+        'products':products
+    }
+
+    return render(request,'sub.html',context)

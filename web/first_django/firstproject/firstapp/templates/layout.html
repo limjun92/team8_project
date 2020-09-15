@@ -10,62 +10,25 @@
 <body>
 
     <div class="header">
-        <a href="#">LOGO</a>
-        <h1>HomePage</h1>
+        <a href="{% url 'index' %}">HomePage</a>
+        <a href="{% url 'index' %}">Suffle</a>
     </div>
 
-    <div class="wrap">
-
-    {% comment %} 메뉴바 {% endcomment %}
-        <div class="left-wrap">
-            <form action="{% url 'check' %}" method="POST">
-                {% csrf_token %}
-                <input type="checkbox" name="check" value="Woman">
-                    <label>Woman</label>
-                </input><br>
-                <input type="checkbox" name="check" value="Man">
-                    <label>Man</label>
-                </input><br>
-                <br>
-                <input type="checkbox" name="check" value="top">
-                    <label>top</label>
-                </input><br>
-                <input type="checkbox" name="check" value="bottoms">
-                    <label>bottoms</label>
-                </input><br>
-                <input type="checkbox" name="check" value="etc">
-                    <label>etc</label>
-                </input><br>
-                <button type='submit'>SEARCH</button>
-            </form>
-        </div>
-
-    {% comment %} 메인콘텐츠 {% endcomment %}
-        <div class="right-wrap">
-                <div class="content_wrap">
+    <div class="content">
                         
-                        {% for product in products %}
-                            <a href="{% url 'sub' %}">
-                                <div class='box'>
-                                    {{product.name}}
-                                </div>
-                            </a>
-                        {% endfor %}                    
-
-                        {% for answer in answers %}
-                            {{answer}}
-                        {% endfor %}
-
+        {% for product in products %}
+            <a href="{% url 'sub' %}">
+                <div class='box'>
+                    {{product.name}}
                 </div>
-        </div>
-    </div>  
+            </a>
+        {% endfor %}           
+
+    </div>
 
     <div class="footer">
         {% block footer %} {% include 'footer.html' %} {% endblock footer %}
     </div>
-
-    {% block extra_body %}
-    {% endblock %}
 
 </body>
 </html>

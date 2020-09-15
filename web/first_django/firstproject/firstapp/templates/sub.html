@@ -11,51 +11,24 @@
 
     <div class="header">
         <a href="{% url 'index' %}">LOGO</a>
-        <h1>SubPage</h1>
+        <h1>인공지능 픽</h1>
     </div>
 
-    <div class="wrap">
-
-    {% comment %} 메뉴바 {% endcomment %}
-        <div class="left-wrap">
-            <form action="{% url 'check' %}" method="POST">
-                {% csrf_token %}
-                <input type="checkbox" name="check" value="Woman">
-                    <label>Woman</label>
-                </input><br>
-                <input type="checkbox" name="check" value="Man">
-                    <label>Man</label>
-                </input><br>
-                <br>
-                <input type="checkbox" name="check" value="top">
-                    <label>top</label>
-                </input><br>
-                <input type="checkbox" name="check" value="bottoms">
-                    <label>bottoms</label>
-                </input><br>
-                <input type="checkbox" name="check" value="etc">
-                    <label>etc</label>
-                </input><br>
-                <button type='submit'>SEARCH</button>
-            </form>
-        </div>
-
-    {% comment %} 메인콘텐츠 {% endcomment %}
-        <div class="right-wrap">
-                <div class="content_wrap">
-                        
-                        <h1>Sub Page</h1>
-
+    <div class="content">
+    서브페이지
+        {% for product in products %}
+            <a href="#">
+                <div class='box'>
+                    {{product.name}}
                 </div>
-        </div>
+            </a>
+        {% endfor %}                    
+
     </div>  
 
     <div class="footer">
         {% block footer %} {% include 'footer.html' %} {% endblock footer %}
     </div>
-
-    {% block extra_body %}
-    {% endblock %}
 
 </body>
 </html>
