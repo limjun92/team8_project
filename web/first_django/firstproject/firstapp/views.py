@@ -27,8 +27,10 @@ def index(request):
 def check(request):
     print('function check')
     answer=request.POST.getlist('check')
+    products=Product.objects.all()
     print(answer)
     context={
+        'products':products,
         'answers':answer
     }
     answer=get_db
