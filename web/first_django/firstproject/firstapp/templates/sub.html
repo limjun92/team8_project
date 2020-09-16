@@ -46,9 +46,11 @@
         <div class="content">
         서브페이지
             {% for product in products %}
-                <a href="#">
+
+            {% comment %} 일단 링크를 상품이미지링크로 걸어둠 {% endcomment %}
+                <a href="{{product.image}}">
                     <div class='box'>
-                        {{product.name}}
+                        <img src="{{product.image}}" alt="image" width="150">
                     </div>
                 </a>
             {% endfor %}                    

@@ -49,7 +49,7 @@
             {% for product in products %}
                 <a href="{% url 'sub' %}">
                     <div class='box'>
-                        {{product.name}}
+                        <img src="{{product.image}}" alt="image" width="150">                        
                     </div>
                 </a>
             {% endfor %}
