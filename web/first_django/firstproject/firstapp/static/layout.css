@@ -6,7 +6,7 @@
 body{
     background-color: cornflowerblue;
     display: flex;
-    flex-direction: column ;
+    flex-direction: column ;    
 }
 
 .header{
@@ -16,12 +16,18 @@ body{
 }
 
 .wrap{
-    display: flex;
+    display: flex;    
+}
+
+.menu_bar{
+    width: 400px;
+    background-color: lightblue;
 }
 
 .content{
     display: flex;
     margin:30px;
+    flex-wrap: wrap;
 }
 
 .box{
