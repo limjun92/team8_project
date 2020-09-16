@@ -15,6 +15,10 @@ body{
     background-color: pink;
 }
 
+.wrap{
+    display: flex;
+}
+
 .content{
     display: flex;
     margin:30px;

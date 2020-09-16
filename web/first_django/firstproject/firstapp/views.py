@@ -9,10 +9,12 @@ from .models import Product,Comment,Favorite,User
 # 메인페이지
 def index(request):        
     
+    answer=request.POST.getlist('check')
     products=Product.objects.all()
     
     context={
-        'products':products
+        'products':products,
+        'answer':answer
     }
 
     return render(request,'index.html',context)

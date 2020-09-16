@@ -9,22 +9,58 @@
 </head>
 <body>
 
+
+    {% comment %} 헤더 {% endcomment %}
     <div class="header">
         <a href="{% url 'index' %}">HomePage</a>
         <a href="{% url 'index' %}">Suffle</a>
     </div>
 
-    <div class="content">
-                        
-        {% for product in products %}
-            <a href="{% url 'sub' %}">
-                <div class='box'>
-                    {{product.name}}
-                </div>
-            </a>
-        {% endfor %}           
+
+    <div class='wrap'>
+
+        {% comment %} 메뉴바 {% endcomment %}
+        <div class="menu_bar">
+            <form action="{% url 'index' %}" method="POST">
+                {% csrf_token %}
+                <input type="checkbox" name="check" value="Woman">
+                    <label>Woman</label>
+                </input><br>
+                <input type="checkbox" name="check" value="Man">
+                    <label>Man</label>
+                </input><br>
+                <br>
+                <input type="checkbox" name="check" value="top">
+                    <label>top</label>
+                </input><br>
+                <input type="checkbox" name="check" value="bottoms">
+                    <label>bottoms</label>
+                </input><br>
+                <input type="checkbox" name="check" value="etc">
+                    <label>etc</label>
+                </input><br>
+                <button type='submit'>SEARCH</button>
+            </form>
+        </div>
+
+        {% comment %} 메인콘텐츠 {% endcomment %}
+        <div class="content">
+        메인콘텐츠
+            {% for product in products %}
+                <a href="{% url 'sub' %}">
+                    <div class='box'>
+                        {{product.name}}
+                    </div>
+                </a>
+            {% endfor %}           
+
+            {% for answers in answer %}
+                {{answers}}
+            {% endfor %}        
+        </div>
 
     </div>
+
 
     <div class="footer">
         {% block footer %} {% include 'footer.html' %} {% endblock footer %}
