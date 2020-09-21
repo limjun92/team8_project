@@ -26,10 +26,32 @@ body{
 
 .content{
     display: flex;
-    margin:30px;
-    flex-wrap: wrap;
 }
 
+.target_container{
+    display: flex;
+    width: 300px;
+    height: 300px;
+    padding: 10px;
+}
+
+.sim_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sim_title{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sim_contents{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    flex-wrap: wrap;
+}
 .box{
     width: 150px;
     height: 150px;

@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'sub.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'firstapp/sub.css' %}"/>
     <title>Document</title>
 </head>
 <body>
@@ -43,28 +44,32 @@
             </form>
         </div>
         {% comment %} 메인콘텐츠 {% endcomment %}
-        <div class="content">
-        서브페이지
-            <!-- {% for product in products %}
 
-            {% comment %} 일단 링크를 상품이미지링크로 걸어둠 {% endcomment %}
-                <a href="{{product.image}}">
-                    <div class='box'>
-                        <img src="{{product.image}}" alt="image" width="150">
-                    </div>
-                </a>
-            {% endfor %}                     -->
+        <div class="content">   
             
-            {% for href, image in details  %}
-                
-                <a href="{{href}}">
-                    <div class='box'>
-                        <img src="{{image}}" alt="image" width="150">
-                    </div>
+            <div class="target_container">
+                <a href="{{target.link}}">
+                    <img src="{{target.images}}" alt="image" width="300">
                 </a>
-                
-            {% endfor %}    
+            </div>
             
+            
+            <div class="sim_container">
+                <div class="sim_title">
+                    <h2>AI가 추천해주는 이런 상품은 어때요? </h2>
+                    <h5>이미지 클릭시 해당 쇼핑몰로 넘어갑니다.</h5>
+                </div>
+                <div class="sim_contents">
+                    {% for href, image in details  %}
+                        <div class='box'>
+                            <a href="{{href}}">
+                                <img src="{{image}}" alt="image" width="150">
+                            </a>
+                        </div>
+                    {% endfor %}    
+                </div>
+            </div>
+  
         </div>  
 
     </div>
