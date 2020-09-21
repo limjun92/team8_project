@@ -27,8 +27,6 @@ def index(request):
         b = 1
 
 
-
-
     with open("C:/Users/ssy01/OneDrive - 고려대학교/인공지능사관학교/TEAM8/team8_project/ssy/dataset/all_combined.csv", 'r') as f2:
         dr2 = csv.DictReader(f2)
         s2 = pd.DataFrame(dr2)
@@ -44,9 +42,9 @@ def index(request):
             s2 = s2[s2.type == 'TOP']
         else:
             s2 = s2[s2.type == 'BOTTOM']
+             
 
     details = []
-
     nums = random.sample(range(len(s2)),100)
     for num in nums:
         link, gender, type_, image, idx = s2.iloc[num]  
@@ -66,7 +64,7 @@ def index(request):
 def sub(request, prod_num):
 
     # from ssapp.models import Stock
-    prod_num = str(prod_num)
+
     gender = gender_list[int(prod_num[0])]
     type_ = type_list[int(prod_num[1])]
     prod_num = int(prod_num[2:])
