@@ -4,7 +4,7 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'layout.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'firstapp/layout.css' %}"/>
     <title>Document</title>
 </head>
 <body>
@@ -13,7 +13,7 @@
     {% comment %} 헤더 {% endcomment %}
     <div class="header">
         <a href="{% url 'index' %}">HomePage</a>
-        <a href="{% url 'index' %}">Suffle</a>
+        <a href="{% url 'index' %}">Shuffle</a>
     </div>
 
 
@@ -45,14 +45,17 @@
 
         {% comment %} 메인콘텐츠 {% endcomment %}
         <div class="content">
-        메인콘텐츠
-            {% for product in products %}
-                <a href="{% url 'sub' %}">
+
+            {% for prod_num, image in products %}
+
+                <a href="{% url 'sub' prod_num%}">
                     <div class='box'>
-                        <img src="{{product.image}}" alt="image" width="150">                        
+                        <img src="{{image}}" alt="image" width="150">                        
                     </div>
                 </a>
+
             {% endfor %}
+
             {% comment %} <div class='box'></div>
             <div class='box'></div>
             <div class='box'></div> {% endcomment %}
