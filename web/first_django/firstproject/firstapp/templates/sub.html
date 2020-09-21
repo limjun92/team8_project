@@ -45,7 +45,7 @@
         {% comment %} 메인콘텐츠 {% endcomment %}
         <div class="content">
         서브페이지
-            {% for product in products %}
+            <!-- {% for product in products %}
 
             {% comment %} 일단 링크를 상품이미지링크로 걸어둠 {% endcomment %}
                 <a href="{{product.image}}">
@@ -53,8 +53,18 @@
                         <img src="{{product.image}}" alt="image" width="150">
                     </div>
                 </a>
-            {% endfor %}                    
-
+            {% endfor %}                     -->
+            
+            {% for href, image in details  %}
+                
+                <a href="{{href}}">
+                    <div class='box'>
+                        <img src="{{image}}" alt="image" width="150">
+                    </div>
+                </a>
+                
+            {% endfor %}    
+            
         </div>  
 
     </div>
