@@ -1,27 +1,27 @@
 {% extends 'layout.html'%}
 
-{% block title %}
-    Index
-{% endblock title %}
+{% load static %}
+{% block style%}
+    <link rel="stylesheet" type="text/css" href="{% static 'firstapp/index.css' %}"/>
+{% endblock %}
+
+{% block header%}
+    <a href="{% url 'index' %}">
+        <img src="{% static 'firstapp/shuffle.png'%}" alt="shuffle" width="50">  
+    </a>
+{% endblock %}
 
 {% block content %}
 
-            {% block right_side %}
-                {% comment %} 
-                <div class="content_wrap">
+    {% for prod_num, image in products %}
 
-                    {% for product in products %}
-                        <div class='box'>
-                            {{product.name}}
-                        </div>
-                    {% endfor %}
+        <a href="{% url 'sub' prod_num%}">
+            <div class='box'>
+                <img src="{{image}}" alt="image" width="200" height="200">                        
+            </div>
+        </a>
 
-                    {% for answer in answers %}
-                        {{answer}}
-                    {% endfor %}
+    {% endfor %}
 
-                </div>
-                {% endcomment %}
-            {% endblock right_side %}
 
-{% endblock content %}
+{% endblock %}

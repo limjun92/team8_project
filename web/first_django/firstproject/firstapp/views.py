@@ -26,7 +26,6 @@ def index(request):
     if 'bottoms' in answer:
         b = 1
 
-
     with open("C:/Users/ssy01/OneDrive - 고려대학교/인공지능사관학교/TEAM8/team8_project/ssy/dataset/all_combined.csv", 'r') as f2:
         dr2 = csv.DictReader(f2)
         s2 = pd.DataFrame(dr2)
@@ -43,7 +42,6 @@ def index(request):
         else:
             s2 = s2[s2.type == 'BOTTOM']
              
-
     details = []
     nums = random.sample(range(len(s2)),100)
     for num in nums:
@@ -63,7 +61,6 @@ def index(request):
 # 서브페이지
 def sub(request, prod_num):
 
-    # from ssapp.models import Stock
 
     gender = gender_list[int(prod_num[0])]
     type_ = type_list[int(prod_num[1])]
@@ -87,17 +84,10 @@ def sub(request, prod_num):
         image = s2['images'][sub_prod_num]
         href = s2['link'][sub_prod_num]
         details.append([href, image])
-    
-    # for i in range(len(s)):
-    #     Stock.objects.create(name=ss[i][0], code=ss[i][1], ipo_date=ss[i][2])
-    
-    # products=Product.objects.all()
+
         
     context={
-        # 'products':products
-        # 'similarity' : ss
-        # 'target_num' : prod_num,
-        # 'target_img' : target_img,
+
         'target' : target,
         'details' : details,
     }
