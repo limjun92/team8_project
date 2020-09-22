@@ -1,82 +1,36 @@
+{% extends 'layout.html'%}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% load static %}
+{% block style%}
     <link rel="stylesheet" type="text/css" href="{% static 'firstapp/sub.css' %}"/>
-    <title>Document</title>
-</head>
-<body>
+{% endblock style %}
 
+{%block content%}
+    <div class="container">
 
-    {% comment %} 헤더 {% endcomment %}
-    <div class="header">
-        <a href="{% url 'index' %}">LOGO</a>
-        <h1>인공지능 픽</h1>
-    </div>
-
-
-    <div class='wrap'>
-
-        {% comment %} 메뉴바 {% endcomment %}
-        <div class="menu_bar">
-            <form action="{% url 'index' %}" method="POST">
-                {% csrf_token %}
-                <input type="checkbox" name="check" value="Woman">
-                    <label>Woman</label>
-                </input><br>
-                <input type="checkbox" name="check" value="Man">
-                    <label>Man</label>
-                </input><br>
-                <br>
-                <input type="checkbox" name="check" value="top">
-                    <label>top</label>
-                </input><br>
-                <input type="checkbox" name="check" value="bottoms">
-                    <label>bottoms</label>
-                </input><br>
-                <input type="checkbox" name="check" value="etc">
-                    <label>etc</label>
-                </input><br>
-                <button type='submit'>SEARCH</button>
-            </form>
+        <div class="target_container">
+            <a href="{{target.link}}">
+                <img src="{{target.images}}" alt="image" width="300">
+            </a>
         </div>
-        {% comment %} 메인콘텐츠 {% endcomment %}
 
-        <div class="content">   
-            
-            <div class="target_container">
-                <a href="{{target.link}}">
-                    <img src="{{target.images}}" alt="image" width="300">
-                </a>
+
+        <div class="sim_container">
+            <div class="sim_title">
+                <h2>AI가 추천해주는 이런 상품은 어때요? </h2>
+                <h5>이미지 클릭시 해당 쇼핑몰로 넘어갑니다.</h5>
             </div>
-            
-            
-            <div class="sim_container">
-                <div class="sim_title">
-                    <h2>AI가 추천해주는 이런 상품은 어때요? </h2>
-                    <h5>이미지 클릭시 해당 쇼핑몰로 넘어갑니다.</h5>
-                </div>
-                <div class="sim_contents">
-                    {% for href, image in details  %}
-                        <div class='box'>
-                            <a href="{{href}}">
-                                <img src="{{image}}" alt="image" width="150">
-                            </a>
-                        </div>
-                    {% endfor %}    
-                </div>
+
+            <div class="sim_contents">
+                {% for href, image in details  %}
+                    <div class='box'>
+                        <a href="{{href}}">
+                            <img src="{{image}}" alt="image" width="200">
+                        </a>
+                    </div>
+                {% endfor %}    
             </div>
-  
-        </div>  
-
+        </div>
+        
     </div>
-
-    <div class="footer">
-        {% block footer %} {% include 'footer.html' %} {% endblock footer %}
-    </div>
-
-</body>
-</html>
+{% endblock content %}
