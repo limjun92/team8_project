@@ -12,6 +12,8 @@ body{
     padding: 10px;
     display: flex;
     margin: auto;
+    justify-content: center;
+    align-items: center;
 }
 
 .wrap{
@@ -35,6 +37,8 @@ body{
 
 
 .footer{
-    background-color: coral;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 200px;
 }
