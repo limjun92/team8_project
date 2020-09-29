@@ -42,9 +42,9 @@ def get_href(ctgr_list, gender, type_):
     df_top.to_csv(f'./mpg_{gender}_T.csv')
 
 
-# top = ['tops/245/','jacket/247/']
-# bottom = ['bottoms/246/']
+top = ['tops/245/','jacket/247/']
+bottom = ['bottoms/246/']
 
-# get_href(top, 'W', 'T')
-# get_href(bottom, 'W', 'B')
+get_href(top, 'W', 'T')
+get_href(bottom, 'W', 'B')
 get_href(['men/262/'],'M','T')

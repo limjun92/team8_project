@@ -30,16 +30,3 @@ def get_href(ctgr, gender, type_):
 
 get_href('23','W','T')
 get_href('25','W','B')
-# ctgr_list = ['23','25']
-# for ctgr in ctgr_list:
-#     if ctgr == '23':
-#         gender = 'W'
-#         type_='T'
-#     elif ctgr == '25':
-#         gender = 'W'
-#         type_='B'
-
-#     file = './launday_{gender}_{type_}.csv'
-#     if os.path.isfile(file):
-#         os.remove(file)
-#     get_href(ctgr, gender, type_)
