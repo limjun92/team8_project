@@ -30,16 +30,17 @@ driver = webdriver.Chrome("./chromedriver.exe")
 #         top.append(ctgr_id)
 #     else:
 #         bottom.append(ctgr_id)
-
-top = ['01002002002008', '01002002002005', '01002002002004', '01002002002003', '01002002002001', '01002002002018', '01002002002017']     
-bottom = ['01002002002009', '01002002002014', '01002002002016']
-gender = 'W'
-# top = ['01001002002001', '01001002002003', '01001002002004', '01001002002005', '01001002002013', '01001002002014', '01001002002016']
-# bottom = ['01001002002012', '01001002002015']
+shop_name = 'adidas'
+# top = ['01002002002008', '01002002002005', '01002002002004', '01002002002003', '01002002002001', '01002002002018', '01002002002017']     
+# bottom = ['01002002002009', '01002002002014', '01002002002016']
+# gender = 'W'
+top = ['01001002002001', '01001002002003', '01001002002004', '01001002002005', '01001002002013', '01001002002014', '01001002002016']
+bottom = ['01001002002012', '01001002002015']
+gender = 'M'
+df = pd.DataFrame()
 for ctgr in top:
     page = 0
     type_='T'
-    df = pd.DataFrame()
     while True:
         page += 1
         driver.get(f"https://shop.adidas.co.kr/PF020201.action?=&ALL=NONE&S_CTGR_CD={ctgr}&CONR_CD=10&S_ORDER_BY=1&S_PAGECNT=100&PAGE_CUR={page}&S_SIZE=&S_TECH=&S_COLOR=&S_COLOR2=&CATG_CHK=&CATG_CLK=&STEP_YN=N&S_QUICK_DLIVY_YN=&S_PRICE=&S_STATE1=&S_STATE2=&S_STATE3=&NFN_ST=Y")
@@ -54,27 +55,23 @@ for ctgr in top:
             img = prod.find_element_by_css_selector("div.img > a > img").get_attribute('src').replace('230','720') 
 
             prod = prod.find_element_by_css_selector("div.info_wrapper > a ")
-            prod_id=prod.get_attribute('href').split("'")
-            info_title=prod.find_element_by_css_selector("div.info_title").text # bs4 기능 일부 지원
+            prod_id=prod.get_attribute('href').split("'")[1]
+            href = f'https://shop.adidas.co.kr/PF020401.action?PROD_CD={prod_id}'
             try:
                 info_price=prod.find_element_by_css_selector("div.info_price > div.line").text # bs4 기능 일부 지원
             except:
                 info_price=prod.find_element_by_css_selector("div.info_price").text
 
-            # detail = {
-            #     'img':img,
-            #     'prod_id': prod_id[1],
-            #     'name':info_title,
-            #     'price':info_price
-            # }
-            detail = [[img, prod_id[1], info_title, info_price]]
+            detail = [[shop_name, href, info_price, img]]
             df = df.append(detail)
-    df.to_csv(f'./adidas_{gender}_{type_}.csv')
+df.to_csv(f'./{shop_name}_{gender}_{type_}.csv')
     
+
+
+df = pd.DataFrame()
 for ctgr in bottom:
     page = 0
     type_='B'
-    df = pd.DataFrame()
     while True:
         page += 1
         driver.get(f"https://shop.adidas.co.kr/PF020201.action?=&ALL=NONE&S_CTGR_CD={ctgr}&CONR_CD=10&S_ORDER_BY=1&S_PAGECNT=100&PAGE_CUR={page}&S_SIZE=&S_TECH=&S_COLOR=&S_COLOR2=&CATG_CHK=&CATG_CLK=&STEP_YN=N&S_QUICK_DLIVY_YN=&S_PRICE=&S_STATE1=&S_STATE2=&S_STATE3=&NFN_ST=Y")
@@ -89,22 +86,17 @@ for ctgr in bottom:
             img = prod.find_element_by_css_selector("div.img > a > img").get_attribute('src').replace('230','720') 
 
             prod = prod.find_element_by_css_selector("div.info_wrapper > a ")
-            prod_id=prod.get_attribute('href').split("'")
-            info_title=prod.find_element_by_css_selector("div.info_title").text # bs4 기능 일부 지원
+            prod_id=prod.get_attribute('href').split("'")[1]
+            href = f'https://shop.adidas.co.kr/PF020401.action?PROD_CD={prod_id}'
             try:
                 info_price=prod.find_element_by_css_selector("div.info_price > div.line").text # bs4 기능 일부 지원
             except:
                 info_price=prod.find_element_by_css_selector("div.info_price").text
 
-            # detail = {
-            #     'img':img,
-            #     'prod_id': prod_id[1],
-            #     'name':info_title,
-            #     'price':info_price
-            # }
-            detail = [[img, prod_id[1], info_title, info_price]]
+            detail = [[shop_name, href, info_price, img]]
             df = df.append(detail)
-    df.to_csv(f'./adidas_{gender}_{type_}.csv')
+df.to_csv(f'./{shop_name}_{gender}_{type_}.csv')
+    
 
 
 driver.quit()
