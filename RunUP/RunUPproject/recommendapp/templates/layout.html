@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'recommendapp/layout.css' %}"/>
+    <link rel="icon" href="data:,">
+    {%block style%}
+    {%endblock%}
+</head>
+<body>
+    {% comment %} 헤더 {% endcomment %}
+    <div class="header">
+        <a href="{% url 'index' %}">
+            <img src="{% static 'recommendapp/logo.png'%}" alt="logo" width="300">  
+        </a> 
+        {% block header%}
+        {% endblock %}
+
+    </div>
+
+    <div class='wrap'>
+        {% comment %} 메뉴바 {% endcomment %}
+        <div class="menu_bar">
+            <form action="{% url 'index' %}" method="POST">
+                {% csrf_token %}
+                <div class="option">
+                    <input type="checkbox" name="check" id='w' value="Woman" >
+                    <label for='w'>Woman</label>
+                </div>
+                <div class="option">
+                    <input type="checkbox" name="check" id='m' value="Man">
+                    <label for='m'>Man</label>
+                </div>
+                <div class="option">
+                    <input type="checkbox" name="check" id='t' value="top">
+                    <label for='t'>top</label>
+                </div>
+                <div class="option">
+                    <input type="checkbox" name="check" id='b' value="bottoms">
+                    <label for='b'>bottoms</label>
+                </div>
+
+                <button type='submit'>SEARCH</button>
+            </form>
+        </div>
+        
+        {% comment %} 메인콘텐츠 {% endcomment %}
+        <div class="content">
+            {%block content%}
+            {%endblock%}
+        </div>
+    </div>
+
+    <div class="footer">
+        <h2>created by TEAM8</h2>
+    </div>
+    
+    
+    
+</body>
+</html>
+
