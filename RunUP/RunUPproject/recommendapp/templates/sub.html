@@ -1,0 +1,37 @@
+{% extends 'layout.html'%}
+
+{% load static %}
+{% block style%}
+    <link rel="stylesheet" type="text/css" href="{% static 'recommendapp/sub.css' %}"/>
+{% endblock style %}
+
+{%block content%}
+    <div class="container">
+
+        <div class="target_container">
+            <a href="{{target.sim_prod.link}}">
+                <img src="{{target.sim_prod.image}}" alt="image" width="300">
+            </a>
+        </div>
+
+
+        <div class="sim_container">
+            <div class="sim_title">
+                <h2>AI가 추천해주는 이런 상품은 어때요? </h2>
+                <h5>이미지 클릭시 해당 쇼핑몰로 넘어갑니다.</h5>
+            </div>
+
+            <div class="sim_contents">
+                {% for item in items  %}
+                    <div class='box'>
+                        <a href="{{item.sim_prod.link}}">
+                            <img src="{{item.sim_prod.image}}" alt="image" width="200">
+                        </a>
+                    </div>
+                {% endfor %}    
+                
+            </div>
+        </div>
+        
+    </div>
+{% endblock content %}
