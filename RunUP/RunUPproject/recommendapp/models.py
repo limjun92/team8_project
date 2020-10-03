@@ -7,6 +7,9 @@ class Product(models.Model):
     gender = models.CharField(max_length=10)
     category = models.CharField(max_length=10)
     image = models.URLField()
+    brand = models.CharField(max_length=10)
+    price = models.CharField(max_length=10)
+
 
 class Similarity(models.Model):
     target_prod = models.CharField(max_length=10)

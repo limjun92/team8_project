@@ -6,12 +6,17 @@
 {% endblock style %}
 
 {%block content%}
+
     <div class="container">
 
         <div class="target_container">
-            <a href="{{target.sim_prod.link}}">
-                <img src="{{target.sim_prod.image}}" alt="image" width="300">
+            <a href="{{main.href}}">
+                <img src="{{main.img}}" alt="image" width="300">
             </a>
+            <div>
+                {{main.brand}}
+                {{main.price}}
+            </div>
         </div>
 
 
@@ -22,10 +27,16 @@
             </div>
             <div class="sim_contents">
                 {% for content in contents  %}
-                    <div class='box'>
-                        <a href="{{content.href}}">
-                            <img src="{{content.img}}" alt="image" width="200">
-                        </a>
+                    <div class ='box'>
+                        <div class='img_box'>
+                            <a href="{{content.href}}">
+                                <img class='image' src="{{content.img}}" alt="image">
+                            </a>
+                        </div>
+                        <div>
+                        {{content.brand}}
+                        {{content.price}}
+                        </div>
                     </div>
                 {% endfor %}    
             </div>

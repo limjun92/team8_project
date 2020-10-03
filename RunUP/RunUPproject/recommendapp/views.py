@@ -18,22 +18,22 @@ def index(request):
         with open('../../RunUP_dataset/final_W_B.csv',encoding='UTF-8') as csvfile:
             rdr = csv.DictReader(csvfile)
             for i in rdr:
-                Product.objects.create(prod_id=cnt,link=i['href'],gender=i['gender'],category=i['type'],image=i['image'])
+                Product.objects.create(prod_id=cnt,link=i['href'],gender=i['gender'],category=i['type'],image=i['image'],brand=i['brand_name'],price=i['price'])
                 cnt+=1
         with open('../../RunUP_dataset/final_M_B.csv',encoding='UTF-8') as csvfile:
             rdr = csv.DictReader(csvfile)
             for i in rdr:
-                Product.objects.create(prod_id=cnt,link=i['href'],gender=i['gender'],category=i['type'],image=i['image'])
+                Product.objects.create(prod_id=cnt,link=i['href'],gender=i['gender'],category=i['type'],image=i['image'],brand=i['brand_name'],price=i['price'])
                 cnt+=1
         with open('../../RunUP_dataset/final_M_T.csv',encoding='UTF-8') as csvfile:
             rdr = csv.DictReader(csvfile)
             for i in rdr:
-                Product.objects.create(prod_id=cnt,link=i['href'],gender=i['gender'],category=i['type'],image=i['image'])
+                Product.objects.create(prod_id=cnt,link=i['href'],gender=i['gender'],category=i['type'],image=i['image'],brand=i['brand_name'],price=i['price'])
                 cnt+=1
         with open('../../RunUP_dataset/final_W_T.csv',encoding='UTF-8') as csvfile:
             rdr = csv.DictReader(csvfile)
             for i in rdr:
-                Product.objects.create(prod_id=cnt,link=i['href'],gender=i['gender'],category=i['type'],image=i['image'])
+                Product.objects.create(prod_id=cnt,link=i['href'],gender=i['gender'],category=i['type'],image=i['image'],brand=i['brand_name'],price=i['price'])
                 cnt+=1
     if not Similarity.objects.filter(target_prod=0).exists():
         for input_file in glob.glob(os.path.join('../../RunUP_dataset/W_B_similarity/','W_B_*')):
@@ -44,7 +44,7 @@ def index(request):
                 for i in rdr:                
                     Similarity.objects.create(target_prod=i['target_num'],sim_prod=i['prod_num'],similarity=i['similarity'])
                     cnt+=1
-                    if cnt == 10:
+                    if cnt == 31:
                         break
 
 
@@ -83,17 +83,25 @@ def index(request):
 
 def sub(request, prod_pk):
     #print('prod_pk',prod_pk)
-    items = Similarity.objects.filter(target_prod=prod_pk)[:10]
+    items = Similarity.objects.filter(target_prod=prod_pk)[:31]
+
 
     content = []
+    main = {}
     #print(items[0].target_product)
     #print(items[0].sim_product)
+    check = True
     for item in items:
-        content.append({'img':item.sim_product.image,'href':item.sim_product.link})
+        if check:
+            main = {'img':item.sim_product.image,'href':item.sim_product.link,'brand':item.sim_product.brand,'price':item.sim_product.price}
+            check = False
+            continue
+        content.append({'img':item.sim_product.image,'href':item.sim_product.link,'brand':item.sim_product.brand,'price':item.sim_product.price})
     # print(images)
     context={
         #'target':items[0],
-        'contents':content[1:],
+        'main':main,
+        'contents':content,
     }
 
     return render(request,'sub.html',context)
