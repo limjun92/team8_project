@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from .models import Product, Similarity
+import csv
+import glob
+import os
+import sys
 
 gender_list = ['M','W']
 type_list = ['TOP','BOTTOM']
@@ -7,9 +11,46 @@ type_list = ['TOP','BOTTOM']
 def index(request):        
     import random
     from random import shuffle
-    
+
+    cnt = 0
+
+    if not Product.objects.filter(prod_id=cnt).exists():
+        with open('../../RunUP_dataset/final_W_B.csv',encoding='UTF-8') as csvfile:
+            rdr = csv.DictReader(csvfile)
+            for i in rdr:
+                Product.objects.create(prod_id=cnt,link=i['href'],gender=i['gender'],category=i['type'],image=i['image'])
+                cnt+=1
+        with open('../../RunUP_dataset/final_M_B.csv',encoding='UTF-8') as csvfile:
+            rdr = csv.DictReader(csvfile)
+            for i in rdr:
+                Product.objects.create(prod_id=cnt,link=i['href'],gender=i['gender'],category=i['type'],image=i['image'])
+                cnt+=1
+        with open('../../RunUP_dataset/final_M_T.csv',encoding='UTF-8') as csvfile:
+            rdr = csv.DictReader(csvfile)
+            for i in rdr:
+                Product.objects.create(prod_id=cnt,link=i['href'],gender=i['gender'],category=i['type'],image=i['image'])
+                cnt+=1
+        with open('../../RunUP_dataset/final_W_T.csv',encoding='UTF-8') as csvfile:
+            rdr = csv.DictReader(csvfile)
+            for i in rdr:
+                Product.objects.create(prod_id=cnt,link=i['href'],gender=i['gender'],category=i['type'],image=i['image'])
+                cnt+=1
+    if not Similarity.objects.filter(target_prod=0).exists():
+        for input_file in glob.glob(os.path.join('../../RunUP_dataset/W_B_similarity/','W_B_*')):
+            #print(os.path.basename(input_file))
+            with open(input_file,encoding='UTF-8') as csvfile:
+                rdr = csv.DictReader(csvfile)
+                cnt = 0
+                for i in rdr:                
+                    Similarity.objects.create(target_prod=i['target_num'],sim_prod=i['prod_num'],similarity=i['similarity'])
+                    cnt+=1
+                    if cnt == 10:
+                        break
+
+
     answer=request.POST.getlist('check')
-    w, m, t, b = 0, 0, 0, 0 
+    print(request.POST)
+    w, m, t, b = 0, 0, 0, 0
 
     if 'Woman' in answer:
         w = 1
@@ -24,29 +65,35 @@ def index(request):
 
     if w != m:
         if w:
-            items = Product.objects.filter(gender='W').order_by('?')
+            items = Product.objects.filter(gender='woman').order_by('?')
         elif m:
-            items = Product.objects.filter(gender='M').order_by('?')
+            items = Product.objects.filter(gender='man').order_by('?')
     
     if t != b:
         if t:
-            items = items.filter(category='TOP').order_by('?')
+            items = items.filter(category='top').order_by('?')
         elif b:
-            items = items.filter(category='BOTTOM').order_by('?')
+            items = items.filter(category='bottom').order_by('?')
     
     context = {
         'prod_object':items[:50]
     }
     
-    return render(request,'index.html', context)
+    return render(request,'index.html',context)
 
 def sub(request, prod_pk):
+    #print('prod_pk',prod_pk)
+    items = Similarity.objects.filter(target_prod=prod_pk)[:10]
 
-    items = Similarity.objects.filter(target_prod=prod_pk)[:33]
-
+    content = []
+    #print(items[0].target_product)
+    #print(items[0].sim_product)
+    for item in items:
+        content.append({'img':item.sim_product.image,'href':item.sim_product.link})
+    # print(images)
     context={
-        'target':items[0],
-        'items':items[1:]
+        #'target':items[0],
+        'contents':content[1:],
     }
 
     return render(request,'sub.html',context)

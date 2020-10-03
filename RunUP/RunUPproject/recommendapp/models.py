@@ -9,6 +9,13 @@ class Product(models.Model):
     image = models.URLField()
 
 class Similarity(models.Model):
-    target_prod = models.ForeignKey(Product, related_name='target_prod',on_delete=models.CASCADE)
-    sim_prod = models.ForeignKey(Product, related_name='sim_prod',on_delete=models.CASCADE)
+    target_prod = models.CharField(max_length=10)
+    sim_prod = models.CharField(max_length=10)
     similarity = models.FloatField()
+
+    @property
+    def target_product(self):
+        return Product.objects.get(prod_id=self.target_prod)
+    @property
+    def sim_product(self):
+        return Product.objects.get(prod_id=self.sim_prod)

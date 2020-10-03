@@ -20,18 +20,15 @@
                 <h2>AI가 추천해주는 이런 상품은 어때요? </h2>
                 <h5>이미지 클릭시 해당 쇼핑몰로 넘어갑니다.</h5>
             </div>
-
             <div class="sim_contents">
-                {% for item in items  %}
+                {% for content in contents  %}
                     <div class='box'>
-                        <a href="{{item.sim_prod.link}}">
-                            <img src="{{item.sim_prod.image}}" alt="image" width="200">
+                        <a href="{{content.href}}">
+                            <img src="{{content.img}}" alt="image" width="200">
                         </a>
                     </div>
                 {% endfor %}    
-                
             </div>
         </div>
-        
     </div>
 {% endblock content %}

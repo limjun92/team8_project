@@ -12,10 +12,13 @@
 {% block content %}
     
     {% for prod in prod_object%}
+        
         <a href="{% url 'sub' prod.pk%}">
             <div class='box'>
                 <img src="{{prod.image}}" alt="image" width="200" height="200">                        
             </div>
+            {{prod.prod_id}}
+            {{prod.pk}}
         </a>
 
     {% endfor %}
