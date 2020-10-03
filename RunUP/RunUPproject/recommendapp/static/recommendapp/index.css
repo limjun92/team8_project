@@ -1,6 +1,23 @@
 .box{
+    width: 210px;
+    height: 300px;
+    margin: 10px;
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content: center;
+}
+
+.img_box{
     width: 200px;
     height: 200px;
-    background-color:white;
-    margin: 15px;
+    background-color: white;
+    margin: 10px;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+}
+
+.image{
+    height: 200px; 
 }

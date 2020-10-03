@@ -6,12 +6,17 @@
 {% endblock style %}
 
 {%block content%}
+
     <div class="container">
 
         <div class="target_container">
-            <a href="{{target.sim_prod.link}}">
-                <img src="{{target.sim_prod.image}}" alt="image" width="300">
+            <a href="{{main.href}}">
+                <img src="{{main.img}}" alt="image" width="300">
             </a>
+            <div>
+                {{main.brand}}
+                {{main.price}}
+            </div>
         </div>
 
 
@@ -20,18 +25,21 @@
                 <h2>AI가 추천해주는 이런 상품은 어때요? </h2>
                 <h5>이미지 클릭시 해당 쇼핑몰로 넘어갑니다.</h5>
             </div>
-
             <div class="sim_contents">
-                {% for item in items  %}
-                    <div class='box'>
-                        <a href="{{item.sim_prod.link}}">
-                            <img src="{{item.sim_prod.image}}" alt="image" width="200">
-                        </a>
+                {% for content in contents  %}
+                    <div class ='box'>
+                        <div class='img_box'>
+                            <a href="{{content.href}}">
+                                <img class='image' src="{{content.img}}" alt="image">
+                            </a>
+                        </div>
+                        <div>
+                        {{content.brand}}
+                        {{content.price}}
+                        </div>
                     </div>
                 {% endfor %}    
-                
             </div>
         </div>
-        
     </div>
 {% endblock content %}
