@@ -13,7 +13,7 @@
     {% comment %} 헤더 {% endcomment %}
     <div class="header">
         <a href="{% url 'index' %}">
-            <img src="{% static 'recommendapp/logo.png'%}" alt="logo" width="300">  
+            <img class='logo' src="{% static 'recommendapp/logo.png'%}" alt="logo" width="300">  
         </a> 
         {% block header%}
         {% endblock %}
@@ -42,8 +42,10 @@
                     <label for='b'>bottoms</label>
                 </div>
 
-                <button type='submit'>SEARCH</button>
-            </form>
+                <button class='submit' type='submit'>SEARCH</button><br>
+                {% comment %} <button type="button" class='survey' onclick="location.href='http://naver.com' ">설문조사 바로이동</button>
+                <button type="button" class='survey' onclick="window.open('http://naver.com') ">설문조사  새창이동</button> {% endcomment %}
+            </form>            
         </div>
         
         {% comment %} 메인콘텐츠 {% endcomment %}

@@ -16,6 +16,10 @@ body{
     align-items: center;
 }
 
+.logo{
+    justify-content: start;
+}
+
 .wrap{
     display: flex;    
     flex-direction: row;
@@ -23,9 +27,65 @@ body{
 }
 
 .menu_bar{
-    width: 10%;
+    width: 20%;
     display: flex;
     justify-content: center;
+}
+
+.submit {
+    border: none;
+    border-radius: 8px;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: royalblue; 
+    color: white; 
+}
+
+.submit:hover {
+    background-color: darkblue;
+    color: white;
+}
+
+.survey {
+    border:none;
+    border-radius: 8px;
+    padding: 16px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: mediumslateblue; 
+    color: white; 
+    text-decoration: none !important;
+}
+
+.survey:link{
+    color: white;
+    text-decoration: none !important;
+}
+
+.survey:link{
+    color: white;
+    text-decoration: none !important;
+}
+
+.survey:hover {
+    background-color: indigo;
+    color: white;
+    text-decoration: none !important;
+}
+
+.survey:active{
+    color: white;
+    text-decoration: none !important;
 }
 
 .content{
