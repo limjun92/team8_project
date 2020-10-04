@@ -15,22 +15,22 @@ def index(request):
     cnt = 0
 
     if not Product.objects.filter(prod_id=cnt).exists():
-        with open('../../RunUP_dataset/final_W_B.csv',encoding='UTF-8') as csvfile:
+        with open('../../RunUP_dataset/final_W_B.csv',encoding='UTF-8',mode='rb' ) as csvfile:
             rdr = csv.DictReader(csvfile)
             for i in rdr:
                 Product.objects.create(prod_id=cnt,link=i['href'],gender=i['gender'],category=i['type'],image=i['image'],brand=i['brand_name'],price=i['price'])
                 cnt+=1
-        with open('../../RunUP_dataset/final_M_B.csv',encoding='UTF-8') as csvfile:
+        with open('../../RunUP_dataset/final_M_B.csv',encoding='UTF-8',mode='rb') as csvfile:
             rdr = csv.DictReader(csvfile)
             for i in rdr:
                 Product.objects.create(prod_id=cnt,link=i['href'],gender=i['gender'],category=i['type'],image=i['image'],brand=i['brand_name'],price=i['price'])
                 cnt+=1
-        with open('../../RunUP_dataset/final_M_T.csv',encoding='UTF-8') as csvfile:
+        with open('../../RunUP_dataset/final_M_T.csv',encoding='UTF-8',mode='rb') as csvfile:
             rdr = csv.DictReader(csvfile)
             for i in rdr:
                 Product.objects.create(prod_id=cnt,link=i['href'],gender=i['gender'],category=i['type'],image=i['image'],brand=i['brand_name'],price=i['price'])
                 cnt+=1
-        with open('../../RunUP_dataset/final_W_T.csv',encoding='UTF-8') as csvfile:
+        with open('../../RunUP_dataset/final_W_T.csv',encoding='UTF-8',mode='rb') as csvfile:
             rdr = csv.DictReader(csvfile)
             for i in rdr:
                 Product.objects.create(prod_id=cnt,link=i['href'],gender=i['gender'],category=i['type'],image=i['image'],brand=i['brand_name'],price=i['price'])
@@ -38,7 +38,7 @@ def index(request):
     if not Similarity.objects.filter(target_prod=0).exists():
         for input_file in glob.glob(os.path.join('../../RunUP_dataset/W_B_similarity/','W_B_*')):
             #print(os.path.basename(input_file))
-            with open(input_file,encoding='UTF-8') as csvfile:
+            with open(input_file,encoding='UTF-8',mode='rb') as csvfile:
                 rdr = csv.DictReader(csvfile)
                 cnt = 0
                 for i in rdr:                
