@@ -1,10 +1,6 @@
 from django.shortcuts import render
 from .models import Product, Similarity
-import csv
-import glob
-import os
-import sys
-
+from recommendapp.module.get_csv import get_dataset, get_similarity_W_T_, get_similarity_M_T_, get_similarity_M_B_, get_similarity_W_B_
 gender_list = ['M','W']
 type_list = ['TOP','BOTTOM']
 
@@ -15,37 +11,12 @@ def index(request):
     cnt = 0
 
     if not Product.objects.filter(prod_id=cnt).exists():
-        with open('../../RunUP_dataset/final_W_B.csv',encoding='UTF-8') as csvfile:
-            rdr = csv.DictReader(csvfile)
-            for i in rdr:
-                Product.objects.create(prod_id=cnt,link=i['href'],gender=i['gender'],category=i['type'],image=i['image'],brand=i['brand_name'],price=i['price'])
-                cnt+=1
-        with open('../../RunUP_dataset/final_M_B.csv',encoding='UTF-8') as csvfile:
-            rdr = csv.DictReader(csvfile)
-            for i in rdr:
-                Product.objects.create(prod_id=cnt,link=i['href'],gender=i['gender'],category=i['type'],image=i['image'],brand=i['brand_name'],price=i['price'])
-                cnt+=1
-        with open('../../RunUP_dataset/final_M_T.csv',encoding='UTF-8') as csvfile:
-            rdr = csv.DictReader(csvfile)
-            for i in rdr:
-                Product.objects.create(prod_id=cnt,link=i['href'],gender=i['gender'],category=i['type'],image=i['image'],brand=i['brand_name'],price=i['price'])
-                cnt+=1
-        with open('../../RunUP_dataset/final_W_T.csv',encoding='UTF-8') as csvfile:
-            rdr = csv.DictReader(csvfile)
-            for i in rdr:
-                Product.objects.create(prod_id=cnt,link=i['href'],gender=i['gender'],category=i['type'],image=i['image'],brand=i['brand_name'],price=i['price'])
-                cnt+=1
+        get_dataset()
     if not Similarity.objects.filter(target_prod=0).exists():
-        for input_file in glob.glob(os.path.join('../../RunUP_dataset/W_B_similarity/','W_B_*')):
-            #print(os.path.basename(input_file))
-            with open(input_file,encoding='UTF-8') as csvfile:
-                rdr = csv.DictReader(csvfile)
-                cnt = 0
-                for i in rdr:                
-                    Similarity.objects.create(target_prod=i['target_num'],sim_prod=i['prod_num'],similarity=i['similarity'])
-                    cnt+=1
-                    if cnt == 31:
-                        break
+        get_similarity_W_T_()
+        get_similarity_M_T_()
+        get_similarity_M_B_()
+        get_similarity_W_B_()
 
 
     answer=request.POST.getlist('check')
@@ -82,9 +53,13 @@ def index(request):
     return render(request,'index.html',context)
 
 def sub(request, prod_pk):
-    #print('prod_pk',prod_pk)
+    print('prod_pk',prod_pk)
     items = Similarity.objects.filter(target_prod=prod_pk)[:31]
+    #print(items)
 
+    for item in items:
+        print('target_prod',item.target_prod)
+        break
 
     content = []
     main = {}
@@ -93,10 +68,10 @@ def sub(request, prod_pk):
     check = True
     for item in items:
         if check:
-            main = {'img':item.sim_product.image,'href':item.sim_product.link,'brand':item.sim_product.brand,'price':item.sim_product.price}
+            main = {'img':item.sim_product.image,'href':item.sim_product.link,'brand':item.sim_product.brand,'price':item.sim_product.price,'prod_id':item.sim_product.prod_id}
             check = False
             continue
-        content.append({'img':item.sim_product.image,'href':item.sim_product.link,'brand':item.sim_product.brand,'price':item.sim_product.price})
+        content.append({'img':item.sim_product.image,'href':item.sim_product.link,'brand':item.sim_product.brand,'price':item.sim_product.price,'prod_id':item.sim_product.prod_id})
     # print(images)
     context={
         #'target':items[0],
