@@ -12,7 +12,9 @@
     align-items:center;
     justify-content: center;
 }
-
+.target_img{
+    width: 300px;
+}
 
 .sim_container{
     display: flex;

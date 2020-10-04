@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'recommendapp/layout.css' %}"/>
+    <link rel="stylesheet" type="text/css" media = "(max-width: 480px)" href="{% static 'recommendapp/mobile_layout.css' %}"/>
     <link rel="icon" href="data:,">
     {%block style%}
     {%endblock%}
@@ -12,8 +13,8 @@
 <body>
     {% comment %} 헤더 {% endcomment %}
     <div class="header">
-        <a href="{% url 'index' %}">
-            <img src="{% static 'recommendapp/logo.png'%}" alt="logo" width="300">  
+        <a href="{% url 'index' %}" class="logo_a">
+            <img src="{% static 'recommendapp/logo.png'%}" alt="logo" class="logo_img">  
         </a> 
         {% block header%}
         {% endblock %}
