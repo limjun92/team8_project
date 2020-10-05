@@ -11,16 +11,22 @@ def index(request):
     cnt = 0
 
     if not Product.objects.filter(prod_id=cnt).exists():
+        print('========================_start')
         get_dataset()
+        print('========================_dataset_done_0')
     if not Similarity.objects.filter(target_prod=0).exists():
         get_similarity_W_T_()
+        print('========================_W_T_done_1')
         get_similarity_M_T_()
+        print('========================_W_T_done_2')
         get_similarity_M_B_()
+        print('========================_W_T_done_3')
         get_similarity_W_B_()
+        print('========================_W_T_done_4')
 
 
     answer=request.POST.getlist('check')
-    print(request.POST)
+    #print(request.POST)
     w, m, t, b = 0, 0, 0, 0
 
     if 'Woman' in answer:
@@ -58,7 +64,7 @@ def sub(request, prod_pk):
     #print(items)
 
     for item in items:
-        print('target_prod',item.target_prod)
+        #print('target_prod',item.target_prod)
         break
 
     content = []
@@ -68,10 +74,10 @@ def sub(request, prod_pk):
     check = True
     for item in items:
         if check:
-            main = {'img':item.sim_product.image,'href':item.sim_product.link,'brand':item.sim_product.brand,'price':item.sim_product.price,'prod_id':item.sim_product.prod_id}
+            main = {'img':item.sim_product.image,'href':item.sim_product.link,'brand':item.sim_product.brand,'price':item.sim_product.price}
             check = False
             continue
-        content.append({'img':item.sim_product.image,'href':item.sim_product.link,'brand':item.sim_product.brand,'price':item.sim_product.price,'prod_id':item.sim_product.prod_id})
+        content.append({'img':item.sim_product.image,'href':item.sim_product.link,'brand':item.sim_product.brand,'price':item.sim_product.price})
     # print(images)
     context={
         #'target':items[0],
