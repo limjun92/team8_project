@@ -36,7 +36,7 @@ def get_similarity_W_B_():
             for i in rdr:                
                 Similarity.objects.create(target_prod=i['target_num'],sim_prod=i['prod_num'],similarity=i['similarity'])
                 cnt+=1
-                if cnt == 3:
+                if cnt == 31:
                     break
 def get_similarity_M_B_():
     for input_file in glob.glob(os.path.join('../../RunUP_dataset/M_B_similarity/','M_B_*')):
@@ -47,7 +47,7 @@ def get_similarity_M_B_():
             for i in rdr:                
                 Similarity.objects.create(target_prod=str(int(i['target_num'])+3657),sim_prod=str(int(i['prod_num'])+3657),similarity=i['similarity'])
                 cnt+=1
-                if cnt == 3:
+                if cnt == 31:
                     break
 def get_similarity_M_T_():                
     for input_file in glob.glob(os.path.join('../../RunUP_dataset/M_T_similarity/','M_T_*')):
@@ -58,7 +58,7 @@ def get_similarity_M_T_():
             for i in rdr:                
                 Similarity.objects.create(target_prod=str(int(i['target_num'])+5190),sim_prod=str(int(i['prod_num'])+5190),similarity=i['similarity'])
                 cnt+=1
-                if cnt == 3:
+                if cnt == 31:
                     break
 def get_similarity_W_T_():                
     for input_file in glob.glob(os.path.join('../../RunUP_dataset/W_T_similarity/','W_T_*')):
@@ -69,5 +69,5 @@ def get_similarity_W_T_():
             for i in rdr:
                 Similarity.objects.create(target_prod=str(int(i['target_num'])+9675),sim_prod=str(int(i['prod_num'])+9675),similarity=i['similarity'])
                 cnt+=1
-                if cnt == 3:
+                if cnt == 31:
                     break
