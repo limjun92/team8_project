@@ -19,9 +19,11 @@
                     <img src="{{prod.image}}" alt="image" class="image">                        
                 </a>
             </div>
-            <div>
-            {{prod.brand}}
-            {{prod.price}}
+            <div class='info'>
+                <b>{{prod.brand}}</b>
+                <div class='price'>
+                    {{prod.price}}원
+                </div>
             </div>
         </div>
     {% endfor %}

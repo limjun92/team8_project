@@ -14,11 +14,11 @@
             <a href="{{main.href}}" class="target_box">
                 <img src="{{main.img}}" alt="image" class="target_img">
             </a>
-            <div>
-                {{main.}}
-                {{main.brand}}
-                {{main.price}}
-                {{main.prod_id}}
+            <div class='info'>
+                <b>{{main.brand}}</b>
+                <div class='price'>
+                    {{main.price}}원
+                </div>
             </div>
         </div>
         <div class="sim_container">
@@ -34,10 +34,11 @@
                                 <img class='image' src="{{content.img}}" alt="image" class="image">
                             </a>
                         </div>
-                        <div>
-                        {{content.brand}}
-                        {{content.price}}
-                        {{content.prod_id}}
+                        <div class='info'>
+                        <b>{{content.brand}}</b>
+                            <div class='price'>
+                                {{content.price}}원
+                            </div>
                         </div>
                     </div>
                 {% endfor %}    
